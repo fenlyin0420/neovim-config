@@ -8,7 +8,6 @@ km.set("n", "<ESC>", ":nohl<CR>", opts)
 -- 快速保存
 km.set("n", "<C-s>", ":w<CR>", opts)
 
--- 复制粘贴
 -- 【复制】
 -- 可视模式：选中后按 Ctrl+c 复制到系统剪贴板
 km.set("v", "<C-c>", '"+y', opts)
@@ -24,20 +23,11 @@ km.set("i", "<C-v>", "<C-r>+", opts)
 km.set("v", "<C-v>", '"_dP', opts)
 
 -- 【全选】
--- 顺便帮你配一个 Ctrl+a 全选，配合复制更方便
 km.set("n", "<C-a>", "ggVG", opts)
 
 -- 注释快捷键 (使用 Comment.nvim)
 km.set("n", "<C-/>", "gcc", { remap = true, silent = true })
 km.set("v", "<C-/>", "gc", { remap = true, silent = true })
-km.set("n", "<leader>/", "gcc", { remap = true, desc = "单行注释" })
-km.set("v", "<leader>/", "gc", { remap = true, desc = "选中注释" })
-
--- 窗口导航
-km.set("n", "<C-h>", "<C-w>h", opts)
-km.set("n", "<C-j>", "<C-w>j", opts)
-km.set("n", "<C-k>", "<C-w>k", opts)
-km.set("n", "<C-l>", "<C-w>l", opts)
 
 -- 调整窗口大小
 km.set("n", "<C-Up>", ":resize -2<CR>", opts)

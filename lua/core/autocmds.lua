@@ -1,5 +1,3 @@
--- 自动命令配置
-
 -- 透明背景
 vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
