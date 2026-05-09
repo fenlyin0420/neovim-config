@@ -55,7 +55,7 @@ return {
                     },
                 },
             },
-            custom_highlights = function(colors)
+            custom_highlights = function()
                 return {
                     -- 将有差异的行改为偏红色，与选中行形成更好对比
                     DiffChange = { bg = "#3a2a3a" },
