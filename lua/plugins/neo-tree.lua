@@ -30,14 +30,14 @@ return {
                     expander_highlight = "NeoTreeExpander",
                 },
                 icon = {
-                    folder_closed = "",
-                    folder_open = "",
-                    folder_empty = "󰜌",
-                    default = "*",
-                    highlight = "NeoTreeFileIcon",
+                    folder_closed = "",
+                    folder_open   = "",
+                    folder_empty  = "",
+                    default       = "",
+                    highlight     = "NeoTreeFileIcon",
                 },
                 modified = {
-                    symbol = "[+]",
+                    symbol = "",
                     highlight = "NeoTreeModified",
                 },
                 name = {
@@ -106,7 +106,7 @@ return {
             filesystem = {
                 filtered_items = {
                     visible = false,
-                    hide_dotfiles = false,
+                    hide_dotfiles = true,
                     hide_gitignored = false,
                     hide_hidden = false,
                     hide_by_name = {
