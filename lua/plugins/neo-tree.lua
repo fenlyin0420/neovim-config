@@ -53,7 +53,7 @@ return {
                         renamed   = "➜",
                         untracked = "○",
                         ignored   = "⊝",
-                        staged    = "",
+                        staged    = "✓",
                         unstaged  = "",
                     }
                 },
