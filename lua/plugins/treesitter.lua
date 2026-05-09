@@ -4,6 +4,7 @@ return {
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter").setup({
+            install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site"),
             -- 安装的语言解析器
             ensure_installed = {
                 "c",
