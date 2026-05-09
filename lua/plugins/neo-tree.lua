@@ -47,16 +47,15 @@ return {
                 },
                 git_status = {
                     symbols = {
-                        added = "",
-                        modified = "",
-                        deleted = "✖",
-                        renamed = "󰁕",
-                        untracked = "",
-                        ignored = "",
-                        unstaged = "",
-                        staged = "",
-                        conflict = "",
-                    },
+                        added     = "✚",
+                        modified  = "✹",
+                        deleted   = "✗",
+                        renamed   = "➜",
+                        untracked = "○",
+                        ignored   = "⊝",
+                        staged    = "",
+                        unstaged  = "",
+                    }
                 },
             },
             window = {
@@ -170,5 +169,6 @@ return {
 
         -- 快捷键
         vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "切换文件树" })
+        vim.keymap.set("n", "<leader>g", "<cmd>Neotree git_status<cr>", { desc = "打开git状态栏" })
     end,
 }
