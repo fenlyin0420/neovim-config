@@ -26,8 +26,8 @@ km.set("v", "<C-v>", '"_dP', opts)
 km.set("n", "<C-a>", "ggVG", opts)
 
 -- 注释快捷键 (使用 Comment.nvim)
-km.set("n", "<C-/>", "gcc", { remap = true, silent = true })
-km.set("v", "<C-/>", "gc", { remap = true, silent = true })
+km.set("n", "<C-_>", "gcc", { remap = true, silent = true })
+km.set("v", "<C-_>", "gc", { remap = true, silent = true })
 
 -- 调整窗口大小
 km.set("n", "<C-Up>", ":resize -2<CR>", opts)
