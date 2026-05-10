@@ -1,14 +1,3 @@
--- 透明背景
-vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-        vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-        vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-    end,
-})
-
 -- 打开文件时恢复上次位置
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
