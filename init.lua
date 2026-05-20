@@ -76,6 +76,3 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = true,
   }
 end
-
--- 核心：让 yank/paste 直接用系统剪贴板
-vim.opt.clipboard = 'unnamedplus'

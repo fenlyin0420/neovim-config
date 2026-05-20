@@ -377,7 +377,8 @@ return {
           -- render the image inline in the buffer
           -- if your env doesn't support unicode placeholders, this will be disabled
           -- takes precedence over `opts.float` on supported terminals
-          inline = vim.g.neovim_mode == "skitty" and true or false,
+          -- inline = vim.g.neovim_mode == "skitty" and true or false,
+          inline = false,
           -- only_render_image_at_cursor = vim.g.neovim_mode == "skitty" and false or true,
           -- render the image in a floating window
           -- only used if `opts.inline` is disabled

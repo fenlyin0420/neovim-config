@@ -50,3 +50,5 @@ km.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- 取消 Q 进入 Ex 模式
 km.set("n", "Q", "<nop>", opts)
+
+vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
