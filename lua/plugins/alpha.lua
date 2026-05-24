@@ -24,7 +24,7 @@ return {
             dashboard.button("e", "  新建文件", "<cmd>ene <BAR> startinsert<cr>"),
             dashboard.button("r", "  最近文件", "<cmd>Telescope oldfiles<cr>"),
             dashboard.button("t", "  查找文本", "<cmd>Telescope live_grep<cr>"),
-            dashboard.button("c", "  配置文件", "<cmd>e ~/.config/nvim/init.lua<cr>"),
+            dashboard.button("c", "  配置文件", "<cmd>e " .. vim.fn.stdpath("config") .. "/init.lua<cr>"),
             dashboard.button("q", "  退出", "<cmd>qa<cr>"),
         }
 
@@ -40,5 +40,9 @@ return {
         -- 布局
         dashboard.opts.opts.noautocmd = true
         alpha.setup(dashboard.opts)
+
+        -- 确保欢迎界面不显示折叠符号
+        vim.wo.foldcolumn = "0"
+        vim.wo.statuscolumn = ""
     end,
 }

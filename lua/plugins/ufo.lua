@@ -1,11 +1,9 @@
 -- lua/plugins/ufo.lua
 return {
     "kevinhwang91/nvim-ufo",
-
     dependencies = {
         "kevinhwang91/promise-async",
     },
-
     init = function()
         ----------------------------------------------------------------
         -- 基础折叠设置
@@ -13,24 +11,12 @@ return {
         vim.o.foldlevel = 99
         vim.o.foldlevelstart = 99
         vim.o.foldenable = true
-
-        ----------------------------------------------------------------
-        -- fold 样式
-        ----------------------------------------------------------------
-        vim.opt.fillchars = {
-            foldopen = "",
-            foldclose = "",
-            foldsep = " ",
-            fold = " ",
-            eob = " ",
-        }
-
         ----------------------------------------------------------------
         -- fold column 高亮
         ----------------------------------------------------------------
         vim.api.nvim_set_hl(0, "FoldColumn", {
-            fg = "#89b4fa",
-            bg = "NONE",
+            bg = "#89b4fa",
+            fg = "NONE",
         })
 
         ----------------------------------------------------------------
@@ -48,8 +34,8 @@ return {
             ["toggleterm"] = true,
             ["Trouble"] = true,
             ["qf"] = true,
+            [""] = true,
         }
-
         ----------------------------------------------------------------
         -- StatusColumn
         ----------------------------------------------------------------
@@ -60,29 +46,19 @@ return {
         ----------------------------------------------------------------
         local function fold_icon()
             local lnum = vim.v.lnum
-
             local foldlevel = vim.fn.foldlevel(lnum)
-
             local prev_foldlevel =
                 lnum > 1 and vim.fn.foldlevel(lnum - 1) or 0
 
-            ----------------------------------------------------------------
             -- 非 fold 起始行
-            ----------------------------------------------------------------
             if foldlevel == 0 or foldlevel <= prev_foldlevel then
                 return " "
             end
-
-            ----------------------------------------------------------------
             -- 已折叠
-            ----------------------------------------------------------------
             if vim.fn.foldclosed(lnum) ~= -1 then
                 return ""
             end
-
-            ----------------------------------------------------------------
             -- 已展开
-            ----------------------------------------------------------------
             return ""
         end
 
@@ -112,10 +88,8 @@ return {
             "FileType",
         }, {
             group = group,
-
             callback = function(args)
                 local ft = vim.bo[args.buf].filetype
-
                 ----------------------------------------------------------------
                 -- 特殊窗口
                 ----------------------------------------------------------------
@@ -124,7 +98,6 @@ return {
                     vim.wo.foldcolumn = "0"
                     return
                 end
-
                 ----------------------------------------------------------------
                 -- 正常编辑窗口
                 ----------------------------------------------------------------
@@ -132,11 +105,25 @@ return {
                 vim.wo.statuscolumn = "%!v:lua.StatusCol.get()"
             end,
         })
+
+        ----------------------------------------------------------------
+        -- 启动时处理初始缓冲（alpha 等用了 noautocmd 时兜底）
+        ----------------------------------------------------------------
+        vim.api.nvim_create_autocmd("UIEnter", {
+            group = group,
+            once = true,
+            callback = function()
+                local ft = vim.bo.filetype
+                if excluded_filetypes[ft] then
+                    vim.wo.foldcolumn = "0"
+                    vim.wo.statuscolumn = ""
+                end
+            end,
+        })
     end,
 
     config = function()
         local ufo = require("ufo")
-
         ----------------------------------------------------------------
         -- 快捷键
         ----------------------------------------------------------------
@@ -166,35 +153,25 @@ return {
         ----------------------------------------------------------------
         local handler = function(virtText, lnum, endLnum, width, truncate)
             local newVirtText = {}
-
             local suffix = (" 󰁂 %d "):format(endLnum - lnum)
-
             local sufWidth = vim.fn.strdisplaywidth(suffix)
-
             local targetWidth = width - sufWidth
-
             local curWidth = 0
-
             for _, chunk in ipairs(virtText) do
                 local chunkText = chunk[1]
-
                 local chunkWidth =
                     vim.fn.strdisplaywidth(chunkText)
-
                 if targetWidth > curWidth + chunkWidth then
                     table.insert(newVirtText, chunk)
                 else
                     chunkText =
                         truncate(chunkText, targetWidth - curWidth)
-
                     table.insert(newVirtText, {
                         chunkText,
                         chunk[2],
                     })
-
                     chunkWidth =
                         vim.fn.strdisplaywidth(chunkText)
-
                     if curWidth + chunkWidth < targetWidth then
                         suffix = suffix
                             .. (" "):rep(
@@ -203,10 +180,8 @@ return {
                                     - chunkWidth
                             )
                     end
-
                     break
                 end
-
                 curWidth = curWidth + chunkWidth
             end
 
@@ -214,7 +189,6 @@ return {
                 suffix,
                 "Comment",
             })
-
             return newVirtText
         end
 
@@ -223,7 +197,6 @@ return {
         ----------------------------------------------------------------
         ufo.setup({
             fold_virt_text_handler = handler,
-
             ----------------------------------------------------------------
             -- provider
             ----------------------------------------------------------------
