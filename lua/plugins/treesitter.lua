@@ -3,53 +3,48 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter").setup({
-            install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site"),
-            -- 安装的语言解析器
-            ensure_installed = {
-                "c",
-                "cpp",
-                "python",
-                "lua",
-                "vim",
-                "vimdoc",
-                "query",
-                "markdown",
-                "markdown_inline",
-                "json",
-                "yaml",
-                "toml",
-                "html",
-                "latex",
-                "bash",
-                "regex",
-                "html",
-                "css",
-                "javascript",
-                "typescript",
-                "svelte",
-            },
-            -- 自动安装缺失的解析器
-            auto_install = true,
-            -- 启用高亮
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-            -- 启用增量选择
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    scope_incremental = false,
-                    node_decremental = "<bs>",
-                },
-            },
-            -- 启用缩进
-            indent = {
-                enable = true,
-            },
+        require("nvim-treesitter").setup()
+        local ensure_installed = {
+            "c",
+            "cpp",
+            "python",
+            "lua",
+            "vim",
+            "vimdoc",
+            "query",
+            "markdown",
+            "markdown_inline",
+            "json",
+            "yaml",
+            "toml",
+            "html",
+            "latex",
+            "bash",
+            "regex",
+            "css",
+            "javascript",
+            "typescript",
+            "svelte",
+            "cuda",
+        }
+
+        require("nvim-treesitter").install(ensure_installed)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            group = vim.api.nvim_create_augroup("TSAutomaticEngine", { clear = true }),
+            pattern = ensure_installed, -- 自动匹配上面列表里所有的语言文件类型
+            callback = function(args)
+                local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+                if ok and stats and stats.size > 3 * 1024 * 1024 then
+                    return
+                end
+
+                -- 自动开启 Treesitter 原生高亮
+                vim.treesitter.start(args.buf)
+
+                -- 自动开启基于 Treesitter 的原生表达式缩进
+                vim.bo[args.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
+            end,
         })
     end,
 }
