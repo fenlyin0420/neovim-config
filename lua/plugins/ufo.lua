@@ -63,11 +63,35 @@ return {
         end
 
         ----------------------------------------------------------------
+        -- 鼠标点击折叠箭头处理
+        ----------------------------------------------------------------
+        function StatusCol.FoldClick()
+            local lnum = vim.fn.getmousepos().line
+
+            if lnum <= 0 or vim.fn.foldlevel(lnum) == 0 then
+                return
+            end
+
+            local win = vim.api.nvim_get_current_win()
+            local saved = vim.api.nvim_win_get_cursor(win)
+
+            vim.api.nvim_win_set_cursor(win, { lnum, 0 })
+            vim.cmd("normal! za")
+            vim.api.nvim_win_set_cursor(win, saved)
+        end
+
+        ----------------------------------------------------------------
         -- statuscolumn 内容
         ----------------------------------------------------------------
         function StatusCol.get()
+            local icon = fold_icon()
+
+            local clickable = "%@v:lua.StatusCol.FoldClick@"
+                .. icon
+                .. "%X"
+
             return table.concat({
-                fold_icon(),
+                clickable,
                 " ",
                 "%s",
                 "%=%l ",
