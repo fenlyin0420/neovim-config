@@ -55,10 +55,12 @@ return {
                     },
                 },
             },
-            custom_highlights = function()
+            custom_highlights = function(colors)
                 return {
                     -- 将有差异的行改为偏红色，与选中行形成更好对比
                     DiffChange = { bg = "#3a2a3a" },
+                    -- 窗口分割线高亮：透明背景 + 醒目颜色，便于区分窗口
+                    WinSeparator = { fg = colors.mauve, bg = "NONE" },
                 }
             end,
         })

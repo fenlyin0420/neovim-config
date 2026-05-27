@@ -31,3 +31,15 @@ opt.timeoutlen = 500
 opt.clipboard = "unnamedplus"
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
+
+-- 窗口分割线（box drawing 字符，配合 WinSeparator 高亮区分不同窗口）
+opt.fillchars = {
+    vert = "│",
+    horiz = "─",
+    horizup = "┴",
+    horizdown = "┬",
+    vertleft = "┤",
+    vertright = "├",
+    verthoriz = "┼",
+    eob = " ",
+}
