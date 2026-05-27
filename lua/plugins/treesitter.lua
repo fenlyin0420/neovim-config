@@ -21,6 +21,11 @@ return {
                 "toml",
                 "bash",
                 "regex",
+                "html",
+                "css",
+                "javascript",
+                "typescript",
+                "svelte",
             },
             -- 自动安装缺失的解析器
             auto_install = true,
