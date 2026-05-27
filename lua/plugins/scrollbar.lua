@@ -1,3 +1,4 @@
+-- 滚动条配置
 return {
     "petertriho/nvim-scrollbar",
     dependencies = {

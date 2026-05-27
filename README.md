@@ -258,3 +258,25 @@ Neo-tree 窗口内快捷键：
    ```bash
    nvim
    ```
+
+
+```python
+print('hello world')
+```
+
+```c
+#include <stdio.h>
+
+int main() {
+    printf("hello world\n");
+    return 0;
+}
+```
+
+$ X^{2} + Y_{1}^{2} = 2 $
+
+
+$$
+ \lim_{n \to \infty} (1 + \frac{1}{n})^n
+$$
+

@@ -1,3 +1,4 @@
+-- 空格等不可见字符显示配置
 return {
     "0xfraso/nvim-listchars",
     opts = {

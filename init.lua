@@ -1,7 +1,3 @@
--- ============================================
--- Neovim 配置文件 - 模块化版本
--- ============================================
-
 vim.g.mapleader = " "
 -- 加载核心配置
 require("core.options")
@@ -59,7 +55,8 @@ require("lazy").setup("plugins", {
     },
 })
 
--- WSL 剪贴板
+-- WSL 剪贴板支持
+-- 确保 Windows 宿主机中的 win32yank.exe 在 WSL 中的 $PATH 环境变量中
 if vim.fn.has('wsl') == 1 then
   vim.g.clipboard = {
     name = 'win32yank-wsl',

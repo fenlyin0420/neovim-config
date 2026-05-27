@@ -1,4 +1,4 @@
--- lua/plugins/ufo.lua
+-- 多行折叠配置
 return {
     "kevinhwang91/nvim-ufo",
     dependencies = {

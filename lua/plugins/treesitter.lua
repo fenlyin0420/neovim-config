@@ -19,6 +19,8 @@ return {
                 "json",
                 "yaml",
                 "toml",
+                "html",
+                "latex",
                 "bash",
                 "regex",
             },
