@@ -14,7 +14,8 @@ return {
             max_lines = false,
             handle = {
                 text = " ",
-                blend = 30,
+                blend = 0,
+                color = "#585b70",
             },
             marks = {
                 Cursor = {
