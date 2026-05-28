@@ -25,8 +25,8 @@ return {
 
             cmp = { enable = false },
             blink = { enable = false },
-            
             provider_options = {
+                -- FIM api 毫秒级响应，chat api 慢，根据场景选择。
                 openai_fim_compatible = {
                     model = "deepseek-v4-flash",
                     end_point = "https://api.deepseek.com/beta/completions",

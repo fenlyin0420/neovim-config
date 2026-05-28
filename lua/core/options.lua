@@ -9,7 +9,7 @@ opt.relativenumber = true
 opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.smartindent = true
+opt.autoindent = true
 
 -- 显示
 opt.wrap = false
@@ -43,3 +43,6 @@ opt.fillchars = {
     verthoriz = "┼",
     eob = " ",
 }
+
+-- 按文件类型加载缩进规则（配合 autoindent 实现正确缩进）
+vim.cmd("filetype indent on")

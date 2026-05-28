@@ -41,9 +41,6 @@ return {
 
                 -- 自动开启 Treesitter 原生高亮
                 vim.treesitter.start(args.buf)
-
-                -- 自动开启基于 Treesitter 的原生表达式缩进
-                vim.bo[args.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
             end,
         })
     end,
