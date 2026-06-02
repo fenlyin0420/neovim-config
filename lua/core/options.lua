@@ -5,6 +5,17 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
+-- 换行
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
+-- 让中文/标点都能断行
+-- opt.breakat = [[ 　，。、；：？！""''()《》【】]]  -- 空格+全角标点
+-- 允许在任何CJK字符后断行
+opt.formatoptions:append('m')
+-- 不要在中文前后乱加空格
+opt.formatoptions:append('M')
+
 -- 缩进
 opt.expandtab = true
 opt.tabstop = 4
@@ -12,7 +23,6 @@ opt.shiftwidth = 4
 opt.autoindent = true
 
 -- 显示
-opt.wrap = false
 opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"

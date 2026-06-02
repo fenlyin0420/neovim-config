@@ -51,4 +51,15 @@ km.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- 取消 Q 进入 Ex 模式
 km.set("n", "Q", "<nop>", opts)
 
-vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
+-- 快速退出
+km.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
+
+-- 屏幕换行和硬换行
+km.set("n", "j", "gj", opts)
+km.set("n", "k", "gk", opts)
+km.set("v", "j", "gj", opts)
+km.set("v", "k", "gk", opts)
+km.set("n", "gj", "j", opts)
+km.set("n", "gk", "k", opts)
+km.set("v", "gj", "j", opts)
+km.set("v", "gk", "k", opts)
