@@ -1,10 +1,10 @@
+-- 配置引导键
+vim.g.mapleader = " "
+
 -- 加载核心配置
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")
-
--- 配置引导键
-vim.g.mapleader = " "
 
 -- 自动安装 lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
