@@ -1,6 +1,5 @@
 -- 配置引导键
 vim.g.mapleader = " "
-
 -- 加载核心配置
 require("core.options")
 require("core.keymaps")
@@ -51,3 +50,20 @@ require("lazy").setup("plugins", {
         },
     },
 })
+
+-- WSL 剪贴板支持
+-- 确保 Windows 宿主机中的 win32yank.exe 在 WSL 中的 $PATH 环境变量中
+if vim.fn.has('wsl') == 1 then
+  vim.g.clipboard = {
+    name = 'win32yank-wsl',
+    copy = {
+      ['+'] = 'win32yank.exe -i --crlf',
+      ['*'] = 'win32yank.exe -i --crlf',
+    },
+    paste = {
+      ['+'] = 'win32yank.exe -o --lf',
+      ['*'] = 'win32yank.exe -o --lf',
+    },
+    cache_enabled = true,
+  }
+end

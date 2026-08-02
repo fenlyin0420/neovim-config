@@ -20,7 +20,7 @@ return {
                 end)
         })
 
-        -- 与 cmp 集成（保留你原来的）
+        -- 与 cmp 集成
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

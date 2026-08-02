@@ -5,11 +5,22 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
+-- 换行
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
+-- 让中文/标点都能断行
+-- opt.breakat = [[ 　，。、；：？！""''()《》【】]]  -- 空格+全角标点
+-- 允许在任何CJK字符后断行
+opt.formatoptions:append('m')
+-- 不要在中文前后乱加空格
+opt.formatoptions:append('M')
+
 -- 缩进
 opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.smartindent = true
+opt.autoindent = true
 
 -- 缩进折叠
 vim.opt.foldmethod = "indent"
@@ -20,7 +31,6 @@ vim.opt.foldnestmax = 5        -- 最多嵌套 5 层
 vim.opt.shiftwidth = 4         -- 缩进宽度（影响折叠层级）
 
 -- 显示
-opt.wrap = false
 opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
@@ -46,3 +56,17 @@ opt.fillchars = { eob = " " }
 -- 将 nvim-data/site 加入 runtimepath（nvim-treesitter 需要）
 opt.runtimepath:append(vim.fs.normalize(vim.fs.joinpath(vim.fn.stdpath("data"), "site")))
 
+-- 窗口分割线（box drawing 字符，配合 WinSeparator 高亮区分不同窗口）
+opt.fillchars = {
+    vert = "│",
+    horiz = "─",
+    horizup = "┴",
+    horizdown = "┬",
+    vertleft = "┤",
+    vertright = "├",
+    verthoriz = "┼",
+    eob = " ",
+}
+
+-- 按文件类型加载缩进规则（配合 autoindent 实现正确缩进）
+vim.cmd("filetype indent on")

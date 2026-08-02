@@ -6,8 +6,11 @@ return {
     priority = 1000,
     config = function()
         require("catppuccin").setup({
-            flavour = "mocha",
+            flavour = "macchiato",
             transparent_background = true,
+            float = {
+                transparent = true,
+            },
             show_end_of_buffer = false,
             term_colors = true,
             dim_inactive = {
@@ -55,7 +58,7 @@ return {
                     },
                 },
             },
-            custom_highlights = function()
+            custom_highlights = function(colors)
                 return {
                     -- 将有差异的行改为偏红色，与选中行形成更好对比
                     DiffChange = { bg = "#3a2a3a" },

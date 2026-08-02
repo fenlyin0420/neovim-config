@@ -29,6 +29,7 @@ return {
                     "lua_ls",
                     "pyright",
                     "clangd",
+                    "svelte",
                 },
                 automatic_installation = true,
             })
@@ -125,8 +126,13 @@ return {
                 },
             })
 
+            -- Svelte
+            vim.lsp.config("svelte", {
+                capabilities = capabilities,
+            })
+
             -- 启用 LSP 服务器
-            vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
+            vim.lsp.enable({ "lua_ls", "pyright", "clangd", "svelte" })
 
             -- 全局启用 inlay hints (VSCode 风格的参数名/类型提示)
             vim.api.nvim_create_autocmd("LspAttach", {
