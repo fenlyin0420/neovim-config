@@ -1,7 +1,6 @@
 -- Toggleterm 终端配置
 return {
     "akinsho/toggleterm.nvim",
-    version = "*",
     enable = false,
     config = function()
         require("toggleterm").setup({

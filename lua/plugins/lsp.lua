@@ -35,7 +35,36 @@ return {
             })
 
             -- 使用 vim.lsp.config (Neovim 0.11+)
+            -- 启用语义高亮 (VSCode 级别的 semantic tokens)
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            capabilities.textDocument.semanticTokens = {
+                multilineTokenSupport = true,
+                overlappingTokenSupport = true,
+                serverCancelSupport = true,
+                augmentsSyntaxTokens = true,
+            }
+
+            -- 启用 LSP 语义高亮着色
+            vim.lsp.semantic_tokens.enable()
+            vim.api.nvim_set_hl(0, "@lsp.type.variable", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.parameter", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.member", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.property", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.function", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.method", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.macro", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.type", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.enumMember", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.modifier", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.keyword", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.string", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.number", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.regexp", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.operator", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.namespace", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.typeParameter", {})
+            vim.api.nvim_set_hl(0, "@lsp.type.decorator", {})
 
             -- Lua
             vim.lsp.config("lua_ls", {
@@ -56,15 +85,28 @@ return {
                 },
             })
 
-            -- Python
+            -- Python (Pyright) 配置
             vim.lsp.config("pyright", {
                 capabilities = capabilities,
+
+                root_dir = function(bufnr)
+                    return vim.fs.root(bufnr, {
+                        "uv.lock",
+                        "pyproject.toml",
+                        ".git",
+                        ".venv",
+                    })
+                end,
+
                 settings = {
                     python = {
                         analysis = {
                             typeCheckingMode = "basic",
+                            diagnosticMode = "workspace",
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
+                            autoImportCompletions = true,
+                            indexing = true,
                         },
                     },
                 },
@@ -91,6 +133,17 @@ return {
 
             -- 启用 LSP 服务器
             vim.lsp.enable({ "lua_ls", "pyright", "clangd", "svelte" })
+
+            -- 全局启用 inlay hints (VSCode 风格的参数名/类型提示)
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("InlayHints", {}),
+                callback = function(ev)
+                    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                    if client and client.server_capabilities.inlayHintProvider then
+                        vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+                    end
+                end,
+            })
 
             -- LSP 快捷键
             vim.api.nvim_create_autocmd("LspAttach", {
