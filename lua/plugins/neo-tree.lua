@@ -5,8 +5,14 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
+        -- 标记被 mutagen 排除同步的文件
+        "fenlyin0420/neo-tree-mutagen.nvim",
     },
     config = function()
+        -- 标记被 mutagen 排除同步的文件：由 neo-tree-mutagen 插件在 setup 前
+        -- 注册 mutagen_marker 组件并自动注入默认渲染器
+        require("neo-tree-mutagen").setup()
+
         require("neo-tree").setup({
             close_if_last_window = false,
             popup_border_style = "rounded",
