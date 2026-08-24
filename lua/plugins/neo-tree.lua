@@ -166,6 +166,32 @@ return {
                     },
                 },
             },
+            -- 1. 只扫描当前浏览目录，不再全局扫描整个仓库（最大优化）
+            git_status_scope_to_path = true,
+            -- 2. 拉长Git刷新间隔，不要实时轮询
+            follow_current_file = {
+                enabled = true,
+                leave_dirs_open = false,
+            },
+            -- Git异步任务参数
+            git_status_async = true,
+            git_status_async_options = {
+                batch_size = 200, -- 分批处理，降低CPU/IO峰值
+                batch_delay = 50, -- 批次间隔，释放nvim主线程
+                max_lines = 3000, -- 限制最大扫描文件数，超大仓库截断
+            },
+            -- 3. 延长Git命令超时时间（SSHFS慢，默认400ms直接超时卡死）
+            git = {
+                timeout = 10000, -- 10秒超时，防止子进程死锁阻塞nvim
+                enable = true,
+            },
+            -- 4. 关闭全量忽略文件扫描（大仓库大量文件会爆炸）
+            respect_gitignore = false,
+            -- 5. 降低自动刷新频率
+            auto_refresh = {
+                enabled = true,
+                interval = 3000, -- 3秒刷新一次，不要实时刷新
+            }
         })
 
         -- 快捷键
