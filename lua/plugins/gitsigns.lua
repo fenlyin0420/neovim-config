@@ -5,7 +5,7 @@ return {
             signs = {
                 add          = { text = "│" }, -- 新增行
                 change       = { text = "│" }, -- 修改行
-                delete       = { text = "▁" }, -- 删除行
+                delete       = { text = "" }, -- 删除行
                 topdelete    = { text = "‾" },
                 changedelete = { text = "~" },
                 untracked    = { text = "┆" },

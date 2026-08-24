@@ -4,8 +4,6 @@ require("core.options")
 require("core.keymaps")
 require("core.autocmds")
 
--- 将 nvim-data/site 加入 runtimepath（nvim-treesitter 需要）
-vim.opt.runtimepath:append(vim.fs.normalize(vim.fs.joinpath(vim.fn.stdpath("data"), "site")))
 
 -- 自动安装 lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

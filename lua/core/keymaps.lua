@@ -63,3 +63,7 @@ km.set("n", "gj", "j", opts)
 km.set("n", "gk", "k", opts)
 km.set("v", "gj", "j", opts)
 km.set("v", "gk", "k", opts)
+
+-- 鼠标滚轮
+km.set("n", "<ScrollWheelUp>", "<C-y>", { silent = true })
+km.set("n", "<ScrollWheelDown>", "<C-e>", { silent = true })
