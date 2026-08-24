@@ -30,11 +30,13 @@ return {
                     expander_highlight = "NeoTreeExpander",
                 },
                 icon = {
-                    folder_closed = "",
-                    folder_open   = "",
-                    folder_empty  = "",
-                    default       = "",
-                    highlight     = "NeoTreeFileIcon",
+                    folder_closed       = "",
+                    folder_open         = "",
+                    folder_empty        = "",
+                    folder_empty_open   = "",
+                    default             = "",
+                    highlight           = "NeoTreeFileIcon",
+                    use_filtered_colors = false
                 },
                 modified = {
                     symbol = "",
@@ -66,13 +68,8 @@ return {
                     nowait = true,
                 },
                 mappings = {
-                    ["<space>"] = {
-                        "toggle_node",
-                        nowait = false,
-                    },
                     ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
-                    ["o"] = "open",
                     ["<esc>"] = "revert_preview",
                     ["P"] = { "toggle_preview", config = { use_float = true } },
                     ["l"] = "focus_preview",
@@ -80,7 +77,6 @@ return {
                     ["s"] = "open_vsplit",
                     ["t"] = "open_tabnew",
                     ["w"] = "open_with_window_picker",
-                    ["C"] = "close_node",
                     ["z"] = "close_all_nodes",
                     ["a"] = {
                         "add",
@@ -117,8 +113,8 @@ return {
                     never_show = {},
                 },
                 follow_current_file = {
-                    enabled = false,
-                    leave_dirs_open = false,
+                    enabled = true,
+                    leave_dirs_open = true,
                 },
                 group_empty_dirs = false,
                 hijack_netrw_behavior = "open_default",

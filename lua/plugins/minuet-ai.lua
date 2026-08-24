@@ -3,6 +3,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
+    enable = false,
     config = function()
         local mc = require("minuet.config")
         require("minuet").setup({

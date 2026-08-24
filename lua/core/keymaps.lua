@@ -28,6 +28,8 @@ km.set("n", "<C-a>", "ggVG", opts)
 -- 注释快捷键 (使用 Comment.nvim)
 km.set("n", "<C-_>", "gcc", { remap = true, silent = true })
 km.set("v", "<C-_>", "gc", { remap = true, silent = true })
+km.set("n", "<C-/>", "gcc", { remap = true, silent = true })
+km.set("v", "<C-/>", "gc", { remap = true, silent = true })
 
 -- 调整窗口大小
 km.set("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -51,4 +53,19 @@ km.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- 取消 Q 进入 Ex 模式
 km.set("n", "Q", "<nop>", opts)
 
-vim.keymap.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
+-- 快速退出
+km.set("n", "<leader>q", ":q!<CR>", { desc = "Force quit" })
+
+-- 屏幕换行和硬换行
+km.set("n", "j", "gj", opts)
+km.set("n", "k", "gk", opts)
+km.set("v", "j", "gj", opts)
+km.set("v", "k", "gk", opts)
+km.set("n", "gj", "j", opts)
+km.set("n", "gk", "k", opts)
+km.set("v", "gj", "j", opts)
+km.set("v", "gk", "k", opts)
+
+-- 鼠标滚轮
+km.set("n", "<ScrollWheelUp>", "<C-y>", { silent = true })
+km.set("n", "<ScrollWheelDown>", "<C-e>", { silent = true })

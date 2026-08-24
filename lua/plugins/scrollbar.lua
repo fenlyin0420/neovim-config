@@ -4,7 +4,7 @@ return {
     dependencies = {
         "lewis6991/gitsigns.nvim",
     },
-    build = "sed -i 's/hunk.added.start + hunk.added.count - hunk.removed.count + 1/hunk.added.start + hunk.added.count - 1/' lua/scrollbar/handlers/gitsigns.lua",
+    -- build = "sed -i 's/hunk.added.start + hunk.added.count - hunk.removed.count + 1/hunk.added.start + hunk.added.count - 1/' lua/scrollbar/handlers/gitsigns.lua",
     config = function()
         require("scrollbar").setup({
             show = true,
@@ -19,25 +19,26 @@ return {
             },
             marks = {
                 Cursor = {
-                    text = "•",
+                    text = "▁",
+                    -- text = "•",
                 },
                 Search = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 Error = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 Warn = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 Info = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 Hint = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 Misc = {
-                    text = { "-", "=" },
+                    text = { "", "" },
                 },
                 GitAdd = {
                     text = "│",
