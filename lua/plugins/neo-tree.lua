@@ -9,9 +9,18 @@ return {
         "fenlyin0420/neo-tree-mutagen.nvim",
     },
     config = function()
-        -- 标记被 mutagen 排除同步的文件：由 neo-tree-mutagen 插件在 setup 前
-        -- 注册 mutagen_marker 组件并自动注入默认渲染器
+        local mutagen_enabled = false
+
         require("neo-tree-mutagen").setup()
+
+        local fs_components = require("neo-tree.sources.filesystem.components")
+        local orig_marker = fs_components.mutagen_marker
+        fs_components.mutagen_marker = function(config, node, state)
+            if not mutagen_enabled then
+                return {}
+            end
+            return orig_marker(config, node, state)
+        end
 
         require("neo-tree").setup({
             close_if_last_window = false,
@@ -54,10 +63,12 @@ return {
                     highlight = "NeoTreeFileName",
                 },
                 git_status = {
+                    hide_deleted_files = true,
                     symbols = {
                         added     = "✚",
                         modified  = "✹",
-                        deleted   = "✗",
+                        -- deleted   = "✗",
+                        deleted   = "",
                         renamed   = "➜",
                         untracked = "○",
                         ignored   = "⊝",
@@ -173,5 +184,28 @@ return {
         -- 快捷键
         vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "切换文件树" })
         vim.keymap.set("n", "<leader>g", "<cmd>Neotree git_status<cr>", { desc = "打开git状态栏" })
+
+        -- mutagen 标记开关
+        vim.api.nvim_create_user_command("MutagenToggle", function()
+            mutagen_enabled = not mutagen_enabled
+            vim.notify("Mutagen 标记: " .. (mutagen_enabled and "开启" or "关闭"), vim.log.levels.INFO)
+            -- 刷新 neo-tree
+            local ok, neotree = pcall(require, "neo-tree")
+            if ok and neotree.refresh then
+                neotree.refresh()
+            end
+        end, { desc = "切换 mutagen 标记显示" })
+        vim.keymap.set("n", "<leader>m", "<cmd>MutagenToggle<cr>", { desc = "切换mutagen标记显示" })
+
+        -- 关闭 deleted 文件父目录红色高亮
+        local group = vim.api.nvim_create_augroup("NeoTreeHideDeleted", { clear = true })
+        local function hide_neotree_deleted_highlight()
+            vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { link = "Normal" })
+        end
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            group = group,
+            callback = hide_neotree_deleted_highlight,
+        })
+        hide_neotree_deleted_highlight()
     end,
 }

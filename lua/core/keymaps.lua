@@ -69,3 +69,9 @@ km.set("v", "gk", "k", opts)
 -- 鼠标滚轮
 km.set("n", "<ScrollWheelUp>", "<C-y>", { silent = true })
 km.set("n", "<ScrollWheelDown>", "<C-e>", { silent = true })
+
+-- 窗口间移动
+km.set("n", "<C-h>", "<C-w>h")
+km.set("n", "<C-l>", "<C-w>l")
+km.set("n", "<C-j>", "<C-w>j")
+km.set("n", "<C-k>", "<C-w>k")
