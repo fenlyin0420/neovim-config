@@ -2,6 +2,8 @@
 
 基于 [lazy.nvim](https://github.com/folke/lazy.nvim) 的模块化 Neovim 配置，面向日常开发，提供开箱即用的 IDE 体验。
 
+![Home](./screenshot01.png)
+
 ## 功能概览
 
 - **启动页** — 美观的 Alpha 启动页，快速访问文件搜索、最近文件等
@@ -258,25 +260,4 @@ Neo-tree 窗口内快捷键：
    ```bash
    nvim
    ```
-
-
-```python
-print('hello world')
-```
-
-```c
-#include <stdio.h>
-
-int main() {
-    printf("hello world\n");
-    return 0;
-}
-```
-
-$ X^{2} + Y_{1}^{2} = 2 $
-
-
-$$
- \lim_{n \to \infty} (1 + \frac{1}{n})^n
-$$
 

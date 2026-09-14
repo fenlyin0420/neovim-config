@@ -62,6 +62,8 @@ return {
                 return {
                     -- 将有差异的行改为偏红色，与选中行形成更好对比
                     DiffChange = { bg = "#3a2a3a" },
+                    -- mutagen 排除同步文件的标记（配合 neo-tree 的 mutagen_marker 组件）
+                    NeoTreeMutagenIgnored = { fg = colors.yellow },
                 }
             end,
         })
