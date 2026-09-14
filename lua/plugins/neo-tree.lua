@@ -23,19 +23,6 @@ return {
         end
 
         require("neo-tree").setup({
-            -- 注册数据源：内置源之外，加上 neo-tree-ssh 插件的远程源
-            -- （注意是 neotree-ssh.source，模块名是 neotree-ssh，不是 neo-tree-ssh）
-            sources = { "filesystem", "buffers", "git_status", "neotree-ssh.source" },
-            -- 顶部显示数据源切换标签（SSH 源也会出现在标签里）
-            source_selector = {
-                winbar = true,
-                sources = {
-                    { source = "filesystem" },
-                    { source = "buffers" },
-                    { source = "git_status" },
-                    { source = "neotree-ssh" },
-                },
-            },
             close_if_last_window = false,
             popup_border_style = "rounded",
             enable_git_status = true,
