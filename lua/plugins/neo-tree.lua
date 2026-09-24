@@ -120,13 +120,18 @@ return {
             filesystem = {
                 filtered_items = {
                     visible = false,
-                    hide_dotfiles = true,
+                    -- Keep the search root traversable when the project path is hidden
+                    -- (e.g. ~/.config); the fallback `find` command otherwise prunes it.
+                    hide_dotfiles = false,
                     hide_gitignored = false,
                     hide_hidden = false,
                     hide_by_name = {
                         ".DS_Store",
                         "thumbs.db",
                     },
+                    -- Keep dotfiles filtered in the tree after enabling search
+                    -- traversal for hidden project roots.
+                    hide_by_pattern = { ".*" },
                     never_show = {},
                 },
                 follow_current_file = {
@@ -141,8 +146,14 @@ return {
                         ["<bs>"] = "navigate_up",
                         ["."] = "set_root",
                         ["H"] = "toggle_hidden",
-                        ["/"] = "fuzzy_finder",
-                        ["D"] = "fuzzy_finder_directory",
+                        ["/"] = {
+                            "fuzzy_finder",
+                            config = { keep_filter_on_submit = true },
+                        },
+                        ["D"] = {
+                            "fuzzy_finder_directory",
+                            config = { keep_filter_on_submit = true },
+                        },
                         ["f"] = "filter_on_submit",
                         ["<c-x>"] = "clear_filter",
                         ["[g"] = "prev_git_modified",
