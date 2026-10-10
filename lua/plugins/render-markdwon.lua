@@ -4,6 +4,7 @@ return {
     keys = {
         { '<leader>md', '<cmd>RenderMarkdown buf_toggle<cr>', desc = 'Toggle Markdown Render' },
     },
+    enabled = false,
     config = function()
         local rm = require('render-markdown')
 
@@ -68,6 +69,9 @@ return {
                 highlight = 'RenderMarkdownCode',
                 highlight_border = 'RenderMarkdownCodeBorder',
                 highlight_info = 'RenderMarkdownCodeInfo',
+            },
+            html = {
+                enabled = true,
             },
 
         })
