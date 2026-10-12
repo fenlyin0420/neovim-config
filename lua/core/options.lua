@@ -70,3 +70,7 @@ opt.fillchars = {
 
 -- 按文件类型加载缩进规则（配合 autoindent 实现正确缩进）
 vim.cmd("filetype indent on")
+
+-- 滚动
+opt.sidescrolloff = 8  -- 左右保留8列可视区域
+opt.smoothscroll = true

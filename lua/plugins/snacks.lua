@@ -133,7 +133,7 @@ return {
         -- configured as <leader>sk but I run it too often
         -- Sometimes I need to see if a keymap is already taken or not
         {
-            "<M-k>",
+            "<leader>km",
             function()
                 Snacks.picker.keymaps({
                     layout = "vertical",

@@ -46,25 +46,6 @@ return {
 
             -- 启用 LSP 语义高亮着色
             vim.lsp.semantic_tokens.enable()
-            vim.api.nvim_set_hl(0, "@lsp.type.variable", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.parameter", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.member", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.property", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.function", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.method", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.macro", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.type", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.enumMember", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.modifier", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.keyword", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.string", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.number", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.regexp", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.operator", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.namespace", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.typeParameter", {})
-            vim.api.nvim_set_hl(0, "@lsp.type.decorator", {})
 
             -- Lua
             vim.lsp.config("lua_ls", {
@@ -89,16 +70,16 @@ return {
             vim.lsp.config("pyright", {
                 capabilities = capabilities,
 
-                root_dir = function(bufnr)
-                    return vim.fs.root(bufnr, {
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fs.root(bufnr, {
                         "uv.lock",
                         "pyproject.toml",
                         ".git",
                         ".venv",
-                    })
+                    }))
                 end,
 
-                settings = {
+                init_options = {
                     python = {
                         analysis = {
                             typeCheckingMode = "basic",

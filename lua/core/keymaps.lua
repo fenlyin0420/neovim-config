@@ -66,12 +66,18 @@ km.set("n", "gk", "k", opts)
 km.set("v", "gj", "j", opts)
 km.set("v", "gk", "k", opts)
 
--- 鼠标滚轮
-km.set("n", "<ScrollWheelUp>", "<C-y>", { silent = true })
-km.set("n", "<ScrollWheelDown>", "<C-e>", { silent = true })
+-- 窗口滚动
+km.set("n", "<A-h>", "z2h", opts)
+km.set("n", "<A-l>", "z2l", opts)
+km.set("n", "<A-k>", "<C-y>", opts)
+km.set("n", "<A-j>", "<C-e>", opts)
+km.set("n", "<ScrollWheelUp>", "<C-y>", opts)
+km.set("n", "<ScrollWheelDown>", "<C-e>", opts)
+km.set("n", "<S-ScrollWheelUp>", "z2h", opts)
+km.set("n", "<S-ScrollWheelDown>", "z2l", opts)
 
 -- 窗口间移动
-km.set("n", "<C-h>", "<C-w>h")
-km.set("n", "<C-l>", "<C-w>l")
-km.set("n", "<C-j>", "<C-w>j")
-km.set("n", "<C-k>", "<C-w>k")
+km.set("n", "<C-h>", "<C-w>h", opts)
+km.set("n", "<C-l>", "<C-w>l", opts)
+km.set("n", "<C-j>", "<C-w>j", opts)
+km.set("n", "<C-k>", "<C-w>k", opts)
