@@ -24,11 +24,11 @@ opt.autoindent = true
 
 -- 缩进折叠
 vim.opt.foldmethod = "indent"
-vim.opt.foldenable = true      -- 开启折叠
-vim.opt.foldlevel = 99         -- 打开文件时全部展开
-vim.opt.foldlevelstart = 99    -- 新缓冲区默认展开
-vim.opt.foldnestmax = 5        -- 最多嵌套 5 层
-vim.opt.shiftwidth = 4         -- 缩进宽度（影响折叠层级）
+vim.opt.foldenable = true   -- 开启折叠
+vim.opt.foldlevel = 99      -- 打开文件时全部展开
+vim.opt.foldlevelstart = 99 -- 新缓冲区默认展开
+vim.opt.foldnestmax = 5     -- 最多嵌套 5 层
+vim.opt.shiftwidth = 4      -- 缩进宽度（影响折叠层级）
 
 -- 显示
 opt.cursorline = true
@@ -58,19 +58,19 @@ opt.runtimepath:append(vim.fs.normalize(vim.fs.joinpath(vim.fn.stdpath("data"), 
 
 -- 窗口分割线（box drawing 字符，配合 WinSeparator 高亮区分不同窗口）
 opt.fillchars = {
-    vert = "│",
-    horiz = "─",
-    horizup = "┴",
-    horizdown = "┬",
-    vertleft = "┤",
-    vertright = "├",
-    verthoriz = "┼",
-    eob = " ",
+  vert = "│",
+  horiz = "─",
+  horizup = "┴",
+  horizdown = "┬",
+  vertleft = "┤",
+  vertright = "├",
+  verthoriz = "┼",
+  eob = " ",
 }
 
 -- 按文件类型加载缩进规则（配合 autoindent 实现正确缩进）
 vim.cmd("filetype indent on")
 
 -- 滚动
-opt.sidescrolloff = 8  -- 左右保留8列可视区域
+opt.sidescrolloff = 8 -- 左右保留8列可视区域
 opt.smoothscroll = true
