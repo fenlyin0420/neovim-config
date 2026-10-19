@@ -30,6 +30,7 @@ return {
           "pyright",
           "clangd",
           "svelte",
+          "json-lsp", -- mason 包名，提供 vscode-json-language-server
         },
         automatic_installation = true,
       })
@@ -112,8 +113,18 @@ return {
         capabilities = capabilities,
       })
 
+      -- JSON / JSONC（vscode-json-language-server）：语法错误诊断 + 格式化
+      -- 默认配置的 root_markers 只有 ".git"，没命中 root 时这里显式回退为单文件模式，
+      -- 否则仓库外的独立 .json 文件不会启动 server、也就没有报错标记。
+      vim.lsp.config("jsonls", {
+        capabilities = capabilities,
+        root_dir = function(bufnr, on_dir)
+          on_dir(vim.fs.root(bufnr, { ".git" }))
+        end,
+      })
+
       -- 启用 LSP 服务器
-      vim.lsp.enable({ "lua_ls", "pyright", "clangd", "svelte" })
+      vim.lsp.enable({ "lua_ls", "pyright", "clangd", "svelte", "jsonls" })
 
       -- 全局启用 inlay hints (VSCode 风格的参数名/类型提示)
       vim.api.nvim_create_autocmd("LspAttach", {

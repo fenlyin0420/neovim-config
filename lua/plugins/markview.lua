@@ -2,6 +2,7 @@ return {
   "OXY2DEV/markview.nvim",
   ft = { "markdown" },
   cmd = { "Markview" },
+  enabled = false,
   keys = {
     { "<leader>mv", "<cmd>Markview toggle<cr>", desc = "Markview 切换渲染" },
     { "<leader>ms", "<cmd>Markview split<cr>", desc = "Markview 分栏预览" },
